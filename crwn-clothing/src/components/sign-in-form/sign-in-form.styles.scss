@@ -1,4 +1,4 @@
-.sign-up-container {
+.sign-in-container {
   display: flex;
   flex-direction: column;
   width: 380px;
@@ -10,5 +10,9 @@
   .buttons-container {
     display: flex;
     justify-content: space-between;
+  }
+
+  .form-input {
+    background-color: rgba(10, 94, 220, 0.164)
   }
 }
