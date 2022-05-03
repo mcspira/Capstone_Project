@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import { FormInput } from "../form-input/form-input.component";
 
@@ -9,7 +9,6 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "../button/button.component";
-import { UserContext } from "../../contexts/user.context";
 
 const defaultFormFields = {
   displayName: "",
@@ -20,8 +19,6 @@ const defaultFormFields = {
 export const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
-  const { setCurrentUser } = useContext(UserContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -40,14 +37,12 @@ export const SignUpForm = () => {
         password
       );
 
-      setCurrentUser(user);
-
       await createUserDocumentFromAuth(user, { displayName });
 
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/weak-password") {
-        alert("The minimum lenght of the password is 6, plese try again!");
+        alert("The minimum length of the password is 6, please try again!");
       } else if (error.code === "auth/email-already-in-use") {
         alert("This email has already been used");
       } else {

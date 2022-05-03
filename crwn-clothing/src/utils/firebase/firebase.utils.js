@@ -45,7 +45,7 @@ export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInformation = { displayName: "example" }
+  additionalInformation = { displayName: "" }
 ) => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
