@@ -6,7 +6,7 @@ import { CartContext } from "../../contexts/cart.context";
 import "./checkout.styles.scss";
 
 export const Checkout = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartTotal } = useContext(CartContext);
 
   return (
     <div className="checkout-container">
@@ -28,12 +28,13 @@ export const Checkout = () => {
         </div>
       </div>
         {cartItems.map((cartItem) => {
+          // eslint-disable-next-line
           const { id, name, quantity } = cartItem;
           return (
-            <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
+            <CheckoutItem key={id} cartItem={cartItem}/>
           );
         })}
-        <span className="total"> total: 0</span>
+        <span className="total">Total: $ {cartTotal}</span>
     </div>
   );
 };
